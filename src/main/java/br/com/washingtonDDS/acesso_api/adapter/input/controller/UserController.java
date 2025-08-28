@@ -14,12 +14,13 @@ public class UserController {
 
     @Autowired
     private UserInputPort userInputPort;
+
+
     private UserRepositories userRepositories;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserRequest create(@RequestBody UserRequest userRequest){
-        User newUser = userInputPort.create(userRepositories.toDomain(userRequest));
-        return userRepositories.toDTO(newUser);
+        return userRepositories.toDTO(userInputPort.create(userRepositories.toDomain(userRequest)));
     }
 }
