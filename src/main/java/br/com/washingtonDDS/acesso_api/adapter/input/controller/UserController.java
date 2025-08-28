@@ -1,6 +1,8 @@
 package br.com.washingtonDDS.acesso_api.adapter.input.controller;
 
 import br.com.washingtonDDS.acesso_api.adapter.input.request.UserRequest;
+import br.com.washingtonDDS.acesso_api.port.input.UserInputPort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/users")
 public class UserController {
 
+    @Autowired
+    private UserInputPort userInputPort;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserRequest create(@RequestBody UserRequest userRequest){
-        return userRequest;
+        return userInputPort.create(userRequest);
     }
 }
