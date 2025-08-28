@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserRequest {
     private Long id;
-    private Long name;
+    private String name;
     private String email;
     private String password;
     private Boolean administrator;
