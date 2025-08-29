@@ -1,6 +1,9 @@
 package br.com.washingtonDDS.acesso_api.adapter.output.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +14,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "users")
-public class UserEntity {
-
+@Table(name = "person")
+public class PersonEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private String email;
-    private String password;
-    private Boolean administrator;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
-    private PersonEntity personEntity;
+
+    private String name;
 }
