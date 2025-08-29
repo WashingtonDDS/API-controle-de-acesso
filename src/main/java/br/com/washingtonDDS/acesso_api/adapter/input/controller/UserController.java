@@ -15,6 +15,7 @@ public class UserController {
     @Autowired
     private UserInputPort userInputPort;
 
+    @Autowired
     private UserMapper userMapper;
 
     @PostMapping
