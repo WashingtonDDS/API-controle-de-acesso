@@ -8,11 +8,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+
 public class UserRepositotyImpl implements UserOutputPort {
     private final UserRepository  userRepository;
 
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
+
+    public UserRepositotyImpl(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     @Override
     public User save(User user) {
