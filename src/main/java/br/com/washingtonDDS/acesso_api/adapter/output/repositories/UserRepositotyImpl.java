@@ -32,6 +32,12 @@ public class UserRepositotyImpl implements UserOutputPort {
         return userMapper.toDomain(newUser);
     }
 
+    @Override
+    public User getByemail(String email) {
+        UserEntity userByEmail = userRepository.findByEmail(email);
+        return userMapper.toDomain(userByEmail);
+    }
+
     private PersonEntity savePerson(Person person) {
         PersonEntity personEntity = userMapper.toEntityPerson(person);
         return personRepository.save(personEntity);
