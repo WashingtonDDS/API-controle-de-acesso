@@ -5,16 +5,25 @@ public class User {
    private String email;
    private String password;
    private Boolean administrator;
-   private Long idPerson;
+   private Person person;
 
     public User() {
     }
 
-    public User(Long id, String email, String password, Boolean administrator) {
+
+    public User(Long id, String email, String password, Boolean administrator,Person person) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.administrator = administrator;
+        this.person = person;
+    }
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Long getId() {

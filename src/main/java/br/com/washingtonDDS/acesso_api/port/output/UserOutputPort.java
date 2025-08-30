@@ -5,4 +5,6 @@ import br.com.washingtonDDS.acesso_api.core.domain.model.User;
 public interface UserOutputPort {
 
     public User save(User user);
+
+    public User getByemail(String email);
 }

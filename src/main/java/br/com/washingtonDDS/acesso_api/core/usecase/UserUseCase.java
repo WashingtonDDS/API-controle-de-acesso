@@ -14,6 +14,10 @@ public class UserUseCase implements UserInputPort {
 
     @Override
     public User create(User user) {
+        User userExist = userOutputPort.getByemail(user.getEmail());
+        if (userExist != null){
+            throw new IllegalArgumentException("User already exists");
+        }
         return userOutputPort.save(user);
     }
 }

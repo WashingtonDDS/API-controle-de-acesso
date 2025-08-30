@@ -2,6 +2,7 @@ package br.com.washingtonDDS.acesso_api.adapter.input.controller;
 
 import br.com.washingtonDDS.acesso_api.adapter.input.mapper.UserMapper;
 import br.com.washingtonDDS.acesso_api.adapter.input.request.UserRequest;
+import br.com.washingtonDDS.acesso_api.adapter.input.request.UserResponseDto;
 import br.com.washingtonDDS.acesso_api.core.domain.model.User;
 import br.com.washingtonDDS.acesso_api.port.input.UserInputPort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserRequest create(@RequestBody UserRequest userRequest){
+    public UserResponseDto create(@RequestBody UserRequest userRequest){
         User user = userMapper.toDomain(userRequest);
         User createdUser = userInputPort.create(user);
-        return userMapper.toRequest(createdUser);
+        return userMapper.toResponseDto(createdUser);
     }
 }
