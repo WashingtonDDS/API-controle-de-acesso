@@ -6,7 +6,6 @@ import br.com.washingtonDDS.acesso_api.adapter.output.entity.UserEntity;
 import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import br.com.washingtonDDS.acesso_api.core.domain.model.User;
 import br.com.washingtonDDS.acesso_api.port.output.UserOutputPort;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
