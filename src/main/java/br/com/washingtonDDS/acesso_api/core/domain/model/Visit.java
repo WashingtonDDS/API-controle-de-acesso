@@ -5,17 +5,17 @@ import java.time.LocalDateTime;
 public class Visit {
     private Long id;
     private LocalDateTime dateTime;
-    private Long idResident;
-    private Long idVisitor;
+    private Resident resident;
+    private Visitor visitor;
 
     public Visit() {
     }
 
-    public Visit(Long id, LocalDateTime dateTime, Long idResident, Long idVisitor) {
+    public Visit(Long id, LocalDateTime dateTime, Resident resident, Visitor visitor) {
         this.id = id;
         this.dateTime = dateTime;
-        this.idResident = idResident;
-        this.idVisitor = idVisitor;
+        this.resident = resident;
+        this.visitor = visitor;
     }
 
     public Long getId() {
@@ -34,19 +34,19 @@ public class Visit {
         this.dateTime = dateTime;
     }
 
-    public Long getIdResident() {
-        return idResident;
+    public Resident getResident() {
+        return resident;
     }
 
-    public void setIdResident(Long idResident) {
-        this.idResident = idResident;
+    public void setResident(Resident resident) {
+        this.resident = resident;
     }
 
-    public Long getIdVisitor() {
-        return idVisitor;
+    public Visitor getVisitor() {
+        return visitor;
     }
 
-    public void setIdVisitor(Long idVisitor) {
-        this.idVisitor = idVisitor;
+    public void setVisitor(Visitor visitor) {
+        this.visitor = visitor;
     }
 }

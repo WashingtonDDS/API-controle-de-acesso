@@ -1,16 +1,18 @@
-package br.com.washingtonDDS.acesso_api.core.domain.model;
+package br.com.washingtonDDS.acesso_api.adapter.input.request;
 
-public class Resident {
+import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
+
+public class ResidentRequest {
     private Long id;
     private String cpf;
     private String address;
     private String phone;
     private Person person;
 
-    public Resident() {
+    public ResidentRequest() {
     }
 
-    public Resident(Long id, String cpf, String address, String phone, Person person) {
+    public ResidentRequest(Long id, String cpf, String address, String phone, Person person) {
         this.id = id;
         this.cpf = cpf;
         this.address = address;

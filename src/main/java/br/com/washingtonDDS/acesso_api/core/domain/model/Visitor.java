@@ -3,15 +3,15 @@ package br.com.washingtonDDS.acesso_api.core.domain.model;
 public class Visitor {
     private Long id;
     private String rg;
-    private Long idPerson;
+    private Person person;
 
     public Visitor() {
     }
 
-    public Visitor(Long id, String rg, Long idPerson) {
+    public Visitor(Long id, String rg, Person person) {
         this.id = id;
         this.rg = rg;
-        this.idPerson = idPerson;
+        this.person = person;
     }
 
     public Long getId() {
@@ -30,11 +30,11 @@ public class Visitor {
         this.rg = rg;
     }
 
-    public Long getIdPerson() {
-        return idPerson;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setIdPerson(Long idPerson) {
-        this.idPerson = idPerson;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
