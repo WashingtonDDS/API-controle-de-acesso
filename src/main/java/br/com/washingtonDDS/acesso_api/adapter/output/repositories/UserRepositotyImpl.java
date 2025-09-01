@@ -1,12 +1,11 @@
 package br.com.washingtonDDS.acesso_api.adapter.output.repositories;
 
+import br.com.washingtonDDS.acesso_api.adapter.input.mapper.PersonMapper;
 import br.com.washingtonDDS.acesso_api.adapter.input.mapper.UserMapper;
 import br.com.washingtonDDS.acesso_api.adapter.output.entity.PersonEntity;
 import br.com.washingtonDDS.acesso_api.adapter.output.entity.UserEntity;
-import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import br.com.washingtonDDS.acesso_api.core.domain.model.User;
 import br.com.washingtonDDS.acesso_api.port.output.UserOutputPort;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,32 +13,35 @@ import org.springframework.stereotype.Component;
 public class UserRepositotyImpl implements UserOutputPort {
     private final UserRepository  userRepository;
 
-    private final PersonRepository personRepository;
+    private final PersonRepositoryImpl personRepositoryImpl;
 
     private final UserMapper userMapper;
 
-    public UserRepositotyImpl(UserRepository userRepository, PersonRepository personRepository, UserMapper userMapper) {
+    private final PersonMapper personMapper;
+
+    public UserRepositotyImpl(UserRepository userRepository, PersonRepositoryImpl personRepositoryImpl, UserMapper userMapper, PersonMapper personMapper) {
         this.userRepository = userRepository;
-        this.personRepository = personRepository;
+        this.personRepositoryImpl = personRepositoryImpl;
         this.userMapper = userMapper;
+        this.personMapper = personMapper;
     }
 
     @Override
     public User save(User user) {
         UserEntity userEntity = userMapper.toEntity(user);
-        userEntity.setPersonEntity(savePerson(user.getPerson()));
+
+        PersonEntity savedPerson = personRepositoryImpl.savePerson(user.getPerson());
+        userEntity.setPerson(personMapper.toDomainPerson(savedPerson));
+
         UserEntity newUser = userRepository.save(userEntity);
-        return userMapper.toDomain(newUser);
+        return userMapper.toDomainEntity(newUser);
     }
 
     @Override
     public User getByemail(String email) {
         UserEntity userByEmail = userRepository.findByEmail(email);
-        return userMapper.toDomain(userByEmail);
+        return userMapper.toDomainEntity(userByEmail);
     }
 
-    private PersonEntity savePerson(Person person) {
-        PersonEntity personEntity = userMapper.toEntityPerson(person);
-        return personRepository.save(personEntity);
-    }
+
 }

@@ -1,4 +1,5 @@
 package br.com.washingtonDDS.acesso_api.adapter.input.request;
+import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import lombok.*;
 
 @NoArgsConstructor
@@ -10,7 +11,7 @@ public class UserRequest {
     private String email;
     private String password;
     private Boolean administrator;
-    private PersonRequest personRequest;
+    private Person person;
 
 }
 
