@@ -22,7 +22,9 @@ public interface UserMapper {
     @Mapping(target = "person", source = "personEntity")
     User toDomain(UserEntity userEntity);
 
-    Resident toDmainResident(ResidentRequest residentRequest);
+    Resident toDomainResidentEntity(ResidentEntity residentEntity);
+
+    Resident toDomainResident(ResidentRequest residentRequest);
 
     @Mapping(target = "person", source = "personRequest")
     User toDomain(UserRequest userRequest);

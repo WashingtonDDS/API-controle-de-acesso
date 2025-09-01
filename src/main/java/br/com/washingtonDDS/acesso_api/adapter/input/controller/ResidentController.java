@@ -21,7 +21,7 @@ public class ResidentController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResidentResponseDto create(@RequestBody ResidentRequest residentRequest) {
-        Resident resident = userMapper.toDmainResident(residentRequest);
+        Resident resident = userMapper.toDomainResident(residentRequest);
         Resident newResident = residentInputPort.create(resident);
         return userMapper.toResidentResponseDto(newResident);
     }
