@@ -1,5 +1,6 @@
 package br.com.washingtonDDS.acesso_api.adapter.output.entity;
 
+import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +23,5 @@ public class UserEntity {
     private Boolean administrator;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
-    private PersonEntity personEntity;
+    private Person person;
 }

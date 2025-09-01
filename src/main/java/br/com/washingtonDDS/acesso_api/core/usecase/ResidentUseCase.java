@@ -8,7 +8,7 @@ public class ResidentUseCase implements ResidentInputPort {
 
     private final ResidentOutputPort residentOutputPort;
 
-    public ResidentUseCase(ResidentOutputPort userOutputPort) {
+    public ResidentUseCase(ResidentOutputPort residentOutputPort) {
         this.residentOutputPort = residentOutputPort;
     }
 
