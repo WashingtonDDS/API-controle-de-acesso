@@ -9,19 +9,18 @@ import br.com.washingtonDDS.acesso_api.port.output.UserOutputPort;
 import org.springframework.stereotype.Component;
 
 @Component
-
-public class UserRepositotyImpl implements UserOutputPort {
+public class UserRepositotyOutput implements UserOutputPort {
     private final UserRepository  userRepository;
 
-    private final PersonRepositoryImpl personRepositoryImpl;
+    private final PersonRepository personRepository;
 
     private final UserMapper userMapper;
 
     private final PersonMapper personMapper;
 
-    public UserRepositotyImpl(UserRepository userRepository, PersonRepositoryImpl personRepositoryImpl, UserMapper userMapper, PersonMapper personMapper) {
+    public UserRepositotyOutput(UserRepository userRepository, PersonRepository personRepository, UserMapper userMapper, PersonMapper personMapper) {
         this.userRepository = userRepository;
-        this.personRepositoryImpl = personRepositoryImpl;
+        this.personRepository = personRepository;
         this.userMapper = userMapper;
         this.personMapper = personMapper;
     }
@@ -30,8 +29,9 @@ public class UserRepositotyImpl implements UserOutputPort {
     public User save(User user) {
         UserEntity userEntity = userMapper.toEntity(user);
 
-        PersonEntity savedPerson = personRepositoryImpl.savePerson(user.getPerson());
-        userEntity.setPerson(personMapper.toDomainPerson(savedPerson));
+        PersonEntity savedPerson = personMapper.toEntityPerson(user.getPerson());
+        savedPerson = personRepository.save(savedPerson);
+        userEntity.setPerson(savedPerson);
 
         UserEntity newUser = userRepository.save(userEntity);
         return userMapper.toDomainEntity(newUser);

@@ -2,6 +2,7 @@ package br.com.washingtonDDS.acesso_api.adapter.output.entity;
 
 import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class UserEntity {
     private String email;
     private String password;
     private Boolean administrator;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
-    private Person person;
+    private PersonEntity person;
 }

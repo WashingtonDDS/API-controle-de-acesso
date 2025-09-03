@@ -13,8 +13,11 @@ public class ResidentUseCase implements ResidentInputPort {
     }
 
     @Override
-    public Resident create(Resident Resident) {
-
-        return residentOutputPort.save(Resident);
+    public Resident create(Resident resident) {
+        Resident  residentExist = residentOutputPort.getByCpf(resident.getCpf());
+        if (residentExist != null) {
+            throw new IllegalArgumentException("Resident with CPF " + resident.getCpf() + " already exists.");
+        }
+        return residentOutputPort.save(resident);
     }
 }

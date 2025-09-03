@@ -7,6 +7,7 @@ import br.com.washingtonDDS.acesso_api.core.domain.model.User;
 import br.com.washingtonDDS.acesso_api.port.input.UserInputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +22,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponseDto create(@RequestBody UserRequest userRequest){
+    public UserResponseDto create(@Validated @RequestBody UserRequest userRequest){
         User user = userMapper.toDomain(userRequest);
         User createdUser = userInputPort.create(user);
         return userMapper.toResponseDto(createdUser);

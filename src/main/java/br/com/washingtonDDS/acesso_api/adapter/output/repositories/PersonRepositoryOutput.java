@@ -6,12 +6,12 @@ import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonRepositoryImpl {
+public class PersonRepositoryOutput {
 
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
 
-    public PersonRepositoryImpl(PersonRepository personRepository, PersonMapper personMapper) {
+    public PersonRepositoryOutput(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
         this.personMapper = personMapper;
     }
