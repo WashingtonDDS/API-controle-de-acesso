@@ -1,10 +1,8 @@
 package br.com.washingtonDDS.acesso_api.adapter.output.entity;
 
 import br.com.washingtonDDS.acesso_api.core.domain.model.Person;
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +23,9 @@ public class ResidentEntity {
     private String cpf;
     private String address;
     private String phone;
-    private Person person;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
+    private PersonEntity person;
 
 }

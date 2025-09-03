@@ -6,22 +6,24 @@ import br.com.washingtonDDS.acesso_api.adapter.output.entity.PersonEntity;
 import br.com.washingtonDDS.acesso_api.adapter.output.entity.ResidentEntity;
 import br.com.washingtonDDS.acesso_api.core.domain.model.Resident;
 import br.com.washingtonDDS.acesso_api.port.output.ResidentOutputPort;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class ResidentRepositoryImpl implements ResidentOutputPort {
+public class ResidentRepositoryOutput implements ResidentOutputPort {
 
     private final ResidentRepository residentRepository;
 
-    private final PersonRepositoryImpl personRepositoryImpl;
+    private final PersonRepository personRepository;
+
 
     private final ResidentMapper residentMapper;
 
     private final PersonMapper personMapper;
 
-    public ResidentRepositoryImpl(ResidentRepository residentRepository, PersonRepositoryImpl personRepositoryImpl, ResidentMapper residentMapper, PersonMapper personMapper) {
+    public ResidentRepositoryOutput(ResidentRepository residentRepository, PersonRepository personRepository, ResidentMapper residentMapper, PersonMapper personMapper) {
         this.residentRepository = residentRepository;
-        this.personRepositoryImpl = personRepositoryImpl;
+        this.personRepository = personRepository;
         this.residentMapper = residentMapper;
         this.personMapper = personMapper;
     }
@@ -31,8 +33,9 @@ public class ResidentRepositoryImpl implements ResidentOutputPort {
     public Resident save(Resident resident) {
         ResidentEntity residentEntity = residentMapper.toEntityResident(resident);
 
-        PersonEntity savedPersonEntity = personRepositoryImpl.savePerson(resident.getPerson());
-        residentEntity.setPerson(personMapper.toDomainPerson(savedPersonEntity));
+        PersonEntity savedPersonEntity = personMapper.toEntityPerson(resident.getPerson());
+        savedPersonEntity = personRepository.save(savedPersonEntity);
+        residentEntity.setPerson(savedPersonEntity);
 
         ResidentEntity newResident = residentRepository.save(residentEntity);
         return residentMapper.toDomainResidentEntity(newResident);
@@ -40,6 +43,7 @@ public class ResidentRepositoryImpl implements ResidentOutputPort {
 
     @Override
     public Resident getByCpf(String cpf) {
-        return null;
+        ResidentEntity residentByCpf = residentRepository.findByCpf(cpf);
+        return residentMapper.toDomainResidentEntity(residentByCpf);
     }
 }

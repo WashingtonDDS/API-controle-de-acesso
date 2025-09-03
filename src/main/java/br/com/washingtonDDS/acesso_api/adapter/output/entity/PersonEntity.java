@@ -14,11 +14,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+
 @Table(name = "person")
 public class PersonEntity {
     @Id
     @GeneratedValue
     private Long id;
-
     private String name;
 }
