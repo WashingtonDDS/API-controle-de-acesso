@@ -14,6 +14,10 @@ public class VisitorUseCase implements VisitorInputPort {
 
     @Override
     public Visitor create(Visitor visitor) {
-        return null;
+        Visitor visitorExist = visitorOutputPort.getByRg(visitor.getRg());
+        if (visitorExist != null){
+            throw new IllegalArgumentException("Visitor already exists");
+        }
+        return visitorOutputPort.save(visitor);
     }
 }
